@@ -1,4 +1,4 @@
-# Practica
+# Convertor-num--rom
 
 This repository contains a NodeJS project that provides functionality to convert numbers into their Romanian word equivalents. The converter accepts numbers in range ***0 - 999_999_999.999_999_999*** .
 
