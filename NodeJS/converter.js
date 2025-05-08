@@ -6,7 +6,7 @@
 
 import { Cifra, Zeci, Sute, Mie, Million } from './Classes/gather.js'
 
-const convert = function(number){
+export const convert = function(number, type = "intreg"){
 
     if( number == '0' ) return "zero";
 
@@ -14,30 +14,38 @@ const convert = function(number){
         let intPart = number.split(".")[0];
         let decPart = number.split(".")[1];
         
-        return convert(intPart) + " virgula " + convert(decPart);
+        return convert(intPart) + " virgula " + convert(decPart, "zecimal");
     }
     else{
+        
+        let add = "";
+
+        if( type == "zecimal" ){
+            let mockNumber = String(Number(number));
+            add = " zero".repeat(number.length - mockNumber.length) + " ";
+            number = mockNumber;
+        }
 
         switch( number.length )
         {
             case 1:
-                return new Cifra(number).getNum();
+                return (add + new Cifra(number).getNum()).trimStart();
             case 2:
-                return new Zeci(number).getNum();
+                return (add + new Zeci(number).getNum()).trimStart();
             case 3:
-                return new Sute(number).getNum();
+                return (add + new Sute(number).getNum()).trimStart();
             case 4:
             case 5:
             case 6: {
-                return  new Mie(number).getNum();
+                return (add + new Mie(number).getNum()).trimStart();
             }
             case 7: 
             case 8:
-            case 9:{
-                return new Million(number).getNum();
+            case 9: {
+                return (add + new Million(number).getNum()).trimStart();
             }
             default:
-                console.log("Number too large");
+                return "Number too large";
         }
     }
     
