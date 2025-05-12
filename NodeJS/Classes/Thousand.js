@@ -7,7 +7,9 @@ export class Mie extends Sute {
         const partL = "" + Number(num.slice(0, num.length - 3));
         super(partR);
         if (partL.length == 1) {
-            if (partL == '1')
+            if ( partL == '0' )
+                this.mieS = "";
+            else if (partL == '1')
                 this.mieS = "o mie ";
             else if (partL == '2')
                 this.mieS = "doua mii ";
