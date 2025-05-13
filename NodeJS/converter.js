@@ -6,6 +6,10 @@
 
 import { Cifra, Zeci, Sute, Mie, Million } from './Classes/gather.js'
 
+function removeTrailingZeros(str) {
+    return str.replace(/0+$/, '');
+}
+
 export const convert = function(number, type = "intreg"){
 
     if( number == '0' ) return "zero";
@@ -14,7 +18,7 @@ export const convert = function(number, type = "intreg"){
         let intPart = number.split(".")[0];
         let decPart = number.split(".")[1];
         
-        return convert(intPart) + " virgula " + convert(decPart, "zecimal");
+        return convert(intPart) + " virgula " + convert(removeTrailingZeros(decPart), "zecimal");
     }
     else{
         
